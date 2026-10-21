@@ -1,9 +1,9 @@
 package controller;
-
-
+import model.FillBehavior;
+import model.Outline;
+import model.Solid;
 import view.MyFrame;
 import view.MyPanel;
-
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -18,12 +18,14 @@ public class Controller {
     Rectangle2D rectangle2D;
     Ellipse2D ellipse2D;
     RectangularShape currentShape;
+    FillBehavior fillBehavior;
 
     public Controller() {
         rectangle2D = new Rectangle2D.Double();
         ellipse2D = new Ellipse2D.Double();
         currentShape = rectangle2D;
         points = new Point2D[2];
+        fillBehavior = new Outline();
         myPanel = new MyPanel(this);
         myFrame = new MyFrame(myPanel);
     }
@@ -48,6 +50,23 @@ public class Controller {
         }
     }
 
+    public void toggleFillAction() {
+        if (fillBehavior instanceof Outline) {
+            fillBehavior = new Solid();
+        } else {
+            fillBehavior = new Outline();
+        }
+    }
+
+    // Получение текста для интерфейса
+    public String getFillName() {
+        if (fillBehavior instanceof Outline) {
+            return "pustoi";
+        } else {
+            return "Zakrachen";
+        }
+    }
+
     public void mousePressed(Point point) {
         points[0] = point;
     }
@@ -59,7 +78,7 @@ public class Controller {
     public void draw(Graphics2D g2) {
         if (points[0] != null && points[1] != null) {
             currentShape.setFrameFromDiagonal(points[0], points[1]);
-            g2.draw(currentShape);
+            fillBehavior.drawShape(g2, currentShape);
         }
     }
 }

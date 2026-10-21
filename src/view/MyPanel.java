@@ -1,7 +1,5 @@
 package view;
-
 import controller.Controller;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,7 +9,7 @@ public class MyPanel extends JPanel {
     JTextField t2;
 
     JButton shapeButton;
-
+    JButton fillButton;
 
     Controller controller;
 
@@ -21,10 +19,12 @@ public class MyPanel extends JPanel {
         t1 = new JTextField("", 10);
         t2 = new JTextField("", 10);
         shapeButton = new JButton("Smena");
+        fillButton = new JButton("Zalivka");
 
         add(t1);
         add(t2);
         add(shapeButton);
+        add(fillButton);
 
         this.setBackground(Color.LIGHT_GRAY);
 
@@ -47,12 +47,24 @@ public class MyPanel extends JPanel {
 
 
 
+
         shapeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.toggleShapeAction();
                 t1.setText(" " + controller.getCurrentShapeName());
                 t2.setText("");
+            }
+        });
+
+
+        fillButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.toggleFillAction();
+                t1.setText(" " + controller.getFillName());
+                t2.setText("");
+                repaint(); // Важно, чтобы фигура сразу перерисовалась
             }
         });
     }
