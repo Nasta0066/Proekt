@@ -9,8 +9,7 @@ import java.awt.event.*;
 public class MyPanel extends JPanel {
     JTextField t1;
     JTextField t2;
-    JButton button;
-    JButton dogbutton;
+
     JButton shapeButton;
 
 
@@ -21,14 +20,10 @@ public class MyPanel extends JPanel {
 
         t1 = new JTextField("", 10);
         t2 = new JTextField("", 10);
-        button = new JButton("Action 1 (Cat)");
-        dogbutton = new JButton("Action 2 (Dog)");
         shapeButton = new JButton("Smena");
 
         add(t1);
         add(t2);
-        add(button);
-        add(dogbutton);
         add(shapeButton);
 
         this.setBackground(Color.LIGHT_GRAY);
@@ -50,21 +45,7 @@ public class MyPanel extends JPanel {
             }
         });
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                t1.setText(controller.catAction());
-                t2.setText("Cat");
-            }
-        });
 
-        dogbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                t1.setText(controller.dogAction());
-                t2.setText("Dog");
-            }
-        });
 
         shapeButton.addActionListener(new ActionListener() {
             @Override
