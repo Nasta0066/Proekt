@@ -1,0 +1,25 @@
+import model.Dog;
+import model.SpeakBehavior;
+import view.MyFrame;
+import view.MyPanel;
+
+import javax.swing.SwingUtilities;
+
+import controller.Controller;
+public class Main {
+    public static void main(String[] args){
+        new Controller();;
+    }
+
+
+
+
+    //    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            SpeakBehavior animal = new Dog("Myrka");
+//
+//        MyPanel myPanel = new MyPanel(animal);
+//        MyFrame myFrame = new MyFrame(myPanel);
+//        });
+//    }
+}
